@@ -47,7 +47,6 @@ char checkWinner(const std::vector<std::string>& board) {
     if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != '.')
         return board[0][2];
 
-    // Jeśli nikt nie wygrał, zwróć 'n' jako informację o remisie
     return 'n';
 }
 
@@ -59,7 +58,6 @@ int main() {
         return 1;
     }
 
-    // Wczytanie graczy z pliku players.txt
     std::ifstream playersFile("players.txt");
     if (!playersFile.is_open()) {
         std::cerr << "Nie można otworzyć pliku players.txt!" << std::endl;
@@ -79,7 +77,7 @@ int main() {
     int round = 1;
 
     while (std::getline(file, line)) {
-        if (line.empty()) { // Pusta linia oznacza koniec rundy
+        if (line.empty()) {
             char winner = checkWinner(board);
             updateScores(players, winner);
             std::cout << "Runda " << round << ": ";
@@ -88,7 +86,6 @@ int main() {
             else
                 std::cout << "Remis" << std::endl;
 
-            // Wyczyszczenie planszy
             board = std::vector<std::string>(3);
             round++;
         } else {
@@ -99,7 +96,6 @@ int main() {
 
     file.close();
 
-    // Wyświetlenie wyników w postaci tabeli
     std::cout << "ID\tSign\tWins\tDraws\tLoses\tPoints" << std::endl;
     for (const auto& pair : players) {
         const auto& player = pair.second;
