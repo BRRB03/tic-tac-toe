@@ -1,3 +1,3 @@
 # Tic tac toe
 
-test
+Program został napisany z użyciem Środowiska Visual Studio Code
